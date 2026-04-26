@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<script>document.documentElement.classList.remove('no-js');</script>
 
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -345,6 +346,7 @@ section{position:relative;z-index:2;padding:clamp(70px,11vw,130px) 0}
 /* Reveal helpers (used by GSAP toggle) */
 .rv{opacity:0;transform:translateY(44px);transition:opacity .85s ease,transform .85s ease}
 .rv.vis{opacity:1;transform:translateY(0)}
+html.no-js .rv{opacity:1 !important;transform:none !important}
 
 /* ═══════════════════════════════════════════════════════
    BLESSING SECTION
@@ -1234,7 +1236,7 @@ footer{
         <div class="fam-row">
           <div class="fam-side">
             <div class="fam-role">Bride's Parents</div>
-            <div class="fam-name">Mr. Satyanarayanan Dhevunoori <br>&amp; Mrs. Swarupa Dhevunoori</div>
+            <div class="fam-name">Mr. Satyanarayana Dhevunoori <br>&amp; Mrs. Swarupa Dhevunoori</div>
           </div>
           <div class="fam-divider">◆</div>
           <div class="fam-side">
@@ -1253,7 +1255,7 @@ footer{
           <div class="fam-divider">◆</div>
           <div class="fam-side">
             <div class="fam-role">Groom's Grandparents</div>
-            <div class="fam-name" style="font-size:.92rem">Late Shri Krishnamurthy<br>&amp; Smt. Saraswathi</div>
+            <div class="fam-name" style="font-size:.92rem">Late Shri Hanmantappa<br>&amp; Smt. Hanmavva</div>
           </div>
         </div> -->
         <div class="fam-sep-line"></div>
@@ -1276,11 +1278,7 @@ footer{
         <div class="dtl-tile-lbl">Cuisine</div>
         <div class="dtl-tile-val">Authentic South Indian<br><em>Full vegetarian feast</em></div>
       </div>
-      <div class="dtl-tile">
-        <span class="dtl-tile-icon">📷</span>
-        <div class="dtl-tile-lbl">Hashtag</div>
-        <div class="dtl-tile-val">#PraveenWeds<br>Supriya2026</div>
-      </div>
+
       <div class="dtl-tile">
         <span class="dtl-tile-icon">🚗</span>
         <div class="dtl-tile-lbl">Parking</div>
@@ -1290,11 +1288,6 @@ footer{
         <span class="dtl-tile-icon">🌸</span>
         <div class="dtl-tile-lbl">Theme</div>
         <div class="dtl-tile-val">Jasmine &amp; Gold<br><em>Temple flowers</em></div>
-      </div>
-      <div class="dtl-tile">
-        <span class="dtl-tile-icon">✉️</span>
-        <div class="dtl-tile-lbl">RSVP By</div>
-        <div class="dtl-tile-val">15th June 2026<br><em>Kindly confirm</em></div>
       </div>
     </div>
 
@@ -1448,45 +1441,45 @@ footer{
         <div class="f-row">
           <div class="f-grp">
             <label class="f-lbl" for="f-name">Your Name</label>
-            <input class="f-in" type="text" id="f-name" placeholder="Full name" required>
+            <input class="f-in" type="text" id="f-name" name="guestName" placeholder="Full name" required autocomplete="name">
           </div>
           <div class="f-grp">
             <label class="f-lbl" for="f-phone">Phone</label>
-            <input class="f-in" type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX">
+            <input class="f-in" type="tel" id="f-phone" name="phone" inputmode="tel" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
           </div>
         </div>
         <div class="f-row">
           <div class="f-grp">
             <label class="f-lbl" for="f-guests">Guests</label>
-            <select class="f-sel" id="f-guests">
-              <option>1 Guest</option>
-              <option selected>2 Guests</option>
-              <option>3 Guests</option>
-              <option>4 Guests</option>
-              <option>5+ Guests</option>
+            <select class="f-sel" id="f-guests" name="guestCount" required>
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5+">5+ Guests</option>
             </select>
           </div>
           <div class="f-grp">
             <label class="f-lbl" for="f-attend">Attending?</label>
-            <select class="f-sel" id="f-attend">
-              <option>Joyfully Attending ✓</option>
-              <option>Regretfully Declining</option>
-              <option>Still Deciding</option>
+            <select class="f-sel" id="f-attend" name="attendance" required>
+              <option value="yes">Joyfully Attending ✓</option>
+              <option value="no">Regretfully Declining</option>
+              <option value="deciding">Still Deciding</option>
             </select>
           </div>
         </div>
         <div class="f-grp">
           <label class="f-lbl" for="f-events">Events Attending</label>
-          <select class="f-sel" id="f-events">
-            <option>All Events 🎉</option>
-            <option>Wedding Ceremony Only</option>
-            <option>Reception Only</option>
-            <option>Pre-Wedding Events Only</option>
+          <select class="f-sel" id="f-events" name="events">
+            <option value="all">All Events 🎉</option>
+            <option value="wedding">Wedding Ceremony Only</option>
+            <option value="reception">Reception Only</option>
+            <option value="pre">Pre-Wedding Events Only</option>
           </select>
         </div>
         <div class="f-grp">
           <label class="f-lbl" for="f-msg">Your Blessings</label>
-          <textarea class="f-ta" id="f-msg" placeholder="Share your heartfelt wishes for the couple…"></textarea>
+          <textarea class="f-ta" id="f-msg" name="message" placeholder="Share your heartfelt wishes for the couple…"></textarea>
         </div>
         <button type="submit" class="btn-send">🪔 &nbsp; Send Your Blessings</button>
       </form>
