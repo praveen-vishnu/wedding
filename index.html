@@ -763,20 +763,6 @@ html.no-js .rv{opacity:1 !important;transform:none !important}
 .g-item:hover .g-overlay{opacity:1}
 .g-caption{font-family:var(--ff-body);font-style:italic;color:var(--cream);font-size:.92rem}
 
-/* =======================================================
-   RSVP
-======================================================= */
-#rsvp{background:linear-gradient(180deg,var(--bg) 0%,#150A28 55%,var(--bg) 100%)}
-.rsvp-card{
-  max-width:640px;margin:0 auto;
-  background:linear-gradient(135deg,rgba(201,168,76,.06) 0%,transparent 42%),rgba(255,248,231,.025);
-  border:1px solid rgba(201,168,76,.24);border-radius:10px;
-  padding:clamp(28px,6vw,58px);position:relative;overflow:hidden;
-}
-.rsvp-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--vermillion) 70%,transparent);
-}
 .f-grp{margin-bottom:22px}
 .f-lbl{
   display:block;font-family:var(--ff-head);font-size:.62rem;
@@ -822,10 +808,6 @@ html.no-js .rv{opacity:1 !important;transform:none !important}
 }
 .btn-send:hover::after{transform:translateX(100%)}
 .btn-send:active{transform:translateY(0)}
-#rsvp-ok{display:none;text-align:center;padding:40px 0}
-#rsvp-ok .ok-icon{font-size:3rem;margin-bottom:14px}
-#rsvp-ok h3{font-family:var(--ff-display);color:var(--gold);font-size:1.5rem;margin-bottom:8px}
-#rsvp-ok p{font-family:var(--ff-body);font-style:italic;color:rgba(255,248,231,.65)}
 
 /* =======================================================
    FOOTER
@@ -970,7 +952,6 @@ footer{
     <li><a href="#details">Details</a></li>
     <li><a href="#events">Events</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#rsvp">RSVP</a></li>
   </ul>
 </nav>
 
@@ -1429,75 +1410,6 @@ footer{
 </section>
 
 <!-- ════════════════════════════════════════════════
-     RSVP
-════════════════════════════════════════════════ -->
-<section id="rsvp">
-  <div class="container">
-    <span class="s-eye rv">You Are Invited</span>
-    <h2 class="s-title rv">Kindly <em>RSVP</em></h2>
-    <p class="s-sub rv">We have reserved a place for you in our hearts and at our celebration</p>
-
-    <div class="rsvp-card rv">
-      <div class="co co-tl"></div><div class="co co-tr"></div>
-      <div class="co co-bl"></div><div class="co co-br"></div>
-
-      <form id="rsvp-form" onsubmit="handleRSVP(event)">
-        <div class="f-row">
-          <div class="f-grp">
-            <label class="f-lbl" for="f-name">Your Name</label>
-            <input class="f-in" type="text" id="f-name" name="guestName" placeholder="Full name" required autocomplete="name">
-          </div>
-          <div class="f-grp">
-            <label class="f-lbl" for="f-phone">Phone</label>
-            <input class="f-in" type="tel" id="f-phone" name="phone" inputmode="tel" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
-          </div>
-        </div>
-        <div class="f-row">
-          <div class="f-grp">
-            <label class="f-lbl" for="f-guests">Guests</label>
-            <select class="f-sel" id="f-guests" name="guestCount" required>
-              <option value="1">1 Guest</option>
-              <option value="2" selected>2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests</option>
-              <option value="5+">5+ Guests</option>
-            </select>
-          </div>
-          <div class="f-grp">
-            <label class="f-lbl" for="f-attend">Attending?</label>
-            <select class="f-sel" id="f-attend" name="attendance" required>
-              <option value="yes">Joyfully Attending ✓</option>
-              <option value="no">Regretfully Declining</option>
-              <option value="deciding">Still Deciding</option>
-            </select>
-          </div>
-        </div>
-        <div class="f-grp">
-          <label class="f-lbl" for="f-events">Events Attending</label>
-          <select class="f-sel" id="f-events" name="events">
-            <option value="all">All Events 🎉</option>
-            <option value="wedding">Wedding Ceremony Only</option>
-            <option value="reception">Reception Only</option>
-            <option value="pre">Pre-Wedding Events Only</option>
-          </select>
-        </div>
-        <div class="f-grp">
-          <label class="f-lbl" for="f-msg">Your Blessings</label>
-          <textarea class="f-ta" id="f-msg" name="message" placeholder="Share your heartfelt wishes for the couple…"></textarea>
-        </div>
-        <button type="submit" class="btn-send">🪔 &nbsp; Send Your Blessings</button>
-      </form>
-
-      <div id="rsvp-ok">
-        <div class="ok-icon">🌸</div>
-        <h3>Thank You!</h3>
-        <p>Your blessings mean the world to us.<br>We can't wait to celebrate with you.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════════ -->
 <footer>
@@ -1811,12 +1723,6 @@ gsap.utils.toArray('.g-item').forEach((item, i) => {
   });
 });
 
-/* --- RSVP card --- */
-gsap.from('.rsvp-card', {
-  opacity: 0, y: 55, duration: 1.05, ease: 'power3.out',
-  scrollTrigger: { trigger: '.rsvp-card', start: 'top 78%' }
-});
-
 /* ════════════════════════════════════════════════════════
    7.  HERO RING PARALLAX ON MOUSEMOVE
 ════════════════════════════════════════════════════════ */
@@ -1866,23 +1772,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
-
-/* ════════════════════════════════════════════════════════
-   11. RSVP FORM SUBMIT
-════════════════════════════════════════════════════════ */
-function handleRSVP(e) {
-  e.preventDefault();
-  const form = document.getElementById('rsvp-form');
-  const ok   = document.getElementById('rsvp-ok');
-  gsap.to(form, {
-    opacity: 0, y: -18, duration: .45, ease: 'power2.in',
-    onComplete() {
-      form.style.display = 'none';
-      ok.style.display   = 'block';
-      gsap.from(ok, { opacity: 0, y: 18, duration: .65, ease: 'power3.out' });
-    }
-  });
-}
 
 /* ════════════════════════════════════════════════════════
    12. SECTION TITLE HOVER SPARKLE (em tags)
