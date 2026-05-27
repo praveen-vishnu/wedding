@@ -1507,9 +1507,19 @@ footer{
 <script>
 'use strict';
 
-/* Reset scroll to top on page reload */
+/* Reset scroll to top on page reload - multiple fallbacks */
 window.scrollTo(0, 0);
 history.scrollRestoration = 'manual';
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
+});
+// Extra fallback with requestAnimationFrame
+requestAnimationFrame(() => {
+  window.scrollTo(0, 0);
+});
 
 /* ════════════════════════════════════════════════════════
    1.  THREE.JS — ROTATING KOLAM MANDALA PARTICLE SYSTEM
