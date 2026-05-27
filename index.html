@@ -375,14 +375,30 @@ html.no-js .rv{opacity:1 !important;transform:none !important}
     radial-gradient(ellipse at 0 50%,rgba(26,107,107,.08) 0%,transparent 55%),
     linear-gradient(180deg,var(--bg) 0%,#0E081A 100%);
 }
-.story-wrap{
+/* Desktop timeline layout (unchanged) */
+.story-desktop .story-wrap{
   display:grid;grid-template-columns:1fr 52px 1fr;
   gap:32px;align-items:start;max-width:880px;margin:0 auto;
 }
-@media(max-width:720px){
-  .story-wrap{grid-template-columns:36px 1fr}
+@media(max-width:767px){
+  .story-desktop .story-wrap{grid-template-columns:36px 1fr}
   .story-left-col{display:none}
 }
+
+/* Mobile stacked card layout */
+.story-mobile{display:none;max-width:720px;margin:0 auto;padding:8px 16px}
+.story-cards{display:flex;flex-direction:column;gap:18px}
+.story-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(4,4,6,0.36)}
+.sc-year{font-family:var(--ff-head);color:var(--gold);font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px}
+.sc-title{font-family:var(--ff-display);color:var(--cream);font-size:1.12rem;margin-bottom:8px}
+.sc-body{font-family:var(--ff-body);font-style:italic;color:rgba(255,248,231,.85);font-size:1rem;line-height:1.6}
+
+@media(max-width:767px){
+  .story-desktop{display:none}
+  .story-mobile{display:block}
+}
+
 .st-spine{
   display:flex;flex-direction:column;align-items:center;
   position:relative;
@@ -1043,52 +1059,90 @@ footer{
     <h2 class="s-title rv">Our <em>Story</em></h2>
     <p class="s-sub rv">Every love story is beautiful — but ours is our favourite</p>
 
-    <div class="story-wrap">
-      <!-- Left col (odd items) -->
-      <div class="story-left-col">
-        <div class="st-item left" id="si-0">
-          <div class="st-year">2023</div>
-          <div class="st-ttl">The First Meeting</div>
-          <p class="st-body">Two souls crossing paths at a temple festival — unaware that destiny had already written their story in the stars.</p>
-        </div>
-        <div style="height:110px"></div>
-        <div class="st-item left" id="si-2">
-          <div class="st-year">2024</div>
-          <div class="st-ttl">Families United</div>
-          <p class="st-body">Laughter over filter coffee, blessings from elders, and two families gently becoming one.</p>
-        </div>
-        <div style="height:110px"></div>
-        <div class="st-item left" id="si-4">
-          <div class="st-year">2026</div>
-          <div class="st-ttl">Forever Begins</div>
-          <p class="st-body">The Saptapadi — seven sacred steps, one eternal promise. Today we begin forever.</p>
-        </div>
-      </div>
+    <!-- Mobile stacked cards (shown on small screens) -->
+    <div class="story-mobile rv" aria-hidden="false">
+      <div class="story-cards">
+        <article class="story-card" id="m-si-0">
+          <div class="sc-year">2023</div>
+          <h3 class="sc-title">The First Meeting</h3>
+          <p class="sc-body">Two souls crossing paths at a temple festival — unaware that destiny had already written their story in the stars.</p>
+        </article>
 
-      <!-- Spine -->
-      <div class="st-spine">
-        <div class="st-dot"></div>
-        <div class="st-spacer"></div>
-        <div class="st-dot"></div>
-        <div class="st-spacer"></div>
-        <div class="st-dot"></div>
-        <div class="st-spacer"></div>
-        <div class="st-dot"></div>
-      </div>
+        <article class="story-card" id="m-si-1">
+          <div class="sc-year">2023</div>
+          <h3 class="sc-title">Friendship &amp; Trust</h3>
+          <p class="sc-body">Long evening calls, shared silences, and conversations that lasted until the morning stars faded.</p>
+        </article>
 
-      <!-- Right col (even items) -->
-      <div>
-        <div style="height:55px"></div>
-        <div class="st-item right" id="si-1">
-          <div class="st-year">2023</div>
-          <div class="st-ttl">Friendship &amp; Trust</div>
-          <p class="st-body">Long evening Calls, shared silences, and conversations that lasted until the morning stars faded.</p>
+        <article class="story-card" id="m-si-2">
+          <div class="sc-year">2024</div>
+          <h3 class="sc-title">Families United</h3>
+          <p class="sc-body">Laughter over filter coffee, blessings from elders, and two families gently becoming one.</p>
+        </article>
+
+        <article class="story-card" id="m-si-3">
+          <div class="sc-year">2025</div>
+          <h3 class="sc-title">The Promise</h3>
+          <p class="sc-body">Under a jasmine-scented evening sky, a simple question that changed everything: <em>"Will you travel with me, always?"</em></p>
+        </article>
+
+        <article class="story-card" id="m-si-4">
+          <div class="sc-year">2026</div>
+          <h3 class="sc-title">Forever Begins</h3>
+          <p class="sc-body">The Saptapadi — seven sacred steps, one eternal promise. Today we begin forever.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Desktop timeline (original layout) -->
+    <div class="story-desktop">
+      <div class="story-wrap">
+        <!-- Left col (odd items) -->
+        <div class="story-left-col">
+          <div class="st-item left" id="si-0">
+            <div class="st-year">2023</div>
+            <div class="st-ttl">The First Meeting</div>
+            <p class="st-body">Two souls crossing paths at a temple festival — unaware that destiny had already written their story in the stars.</p>
+          </div>
+          <div style="height:110px"></div>
+          <div class="st-item left" id="si-2">
+            <div class="st-year">2024</div>
+            <div class="st-ttl">Families United</div>
+            <p class="st-body">Laughter over filter coffee, blessings from elders, and two families gently becoming one.</p>
+          </div>
+          <div style="height:110px"></div>
+          <div class="st-item left" id="si-4">
+            <div class="st-year">2026</div>
+            <div class="st-ttl">Forever Begins</div>
+            <p class="st-body">The Saptapadi — seven sacred steps, one eternal promise. Today we begin forever.</p>
+          </div>
         </div>
-        <div style="height:110px"></div>
-        <div class="st-item right" id="si-3">
-          <div class="st-year">2025</div>
-          <div class="st-ttl">The Promise</div>
-          <p class="st-body">Under a jasmine-scented evening sky, a simple question that changed everything: <em>"Will you travel with me, always?"</em></p>
+
+        <!-- Spine -->
+        <div class="st-spine">
+          <div class="st-dot"></div>
+          <div class="st-spacer"></div>
+          <div class="st-dot"></div>
+          <div class="st-spacer"></div>
+          <div class="st-dot"></div>
+          <div class="st-spacer"></div>
+          <div class="st-dot"></div>
+        </div>
+
+        <!-- Right col (even items) -->
+        <div>
+          <div style="height:55px"></div>
+          <div class="st-item right" id="si-1">
+            <div class="st-year">2023</div>
+            <div class="st-ttl">Friendship &amp; Trust</div>
+            <p class="st-body">Long evening Calls, shared silences, and conversations that lasted until the morning stars faded.</p>
+          </div>
+          <div style="height:110px"></div>
+          <div class="st-item right" id="si-3">
+            <div class="st-year">2025</div>
+            <div class="st-ttl">The Promise</div>
+            <p class="st-body">Under a jasmine-scented evening sky, a simple question that changed everything: <em>"Will you travel with me, always?"</em></p>
+          </div>
         </div>
       </div>
     </div>
