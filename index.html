@@ -1507,19 +1507,19 @@ footer{
 <script>
 'use strict';
 
-/* Reset scroll to top on page reload - multiple fallbacks */
-window.scrollTo(0, 0);
+/* Disable browser scroll restoration and reset to top */
 history.scrollRestoration = 'manual';
-window.addEventListener('load', () => {
-  window.scrollTo(0, 0);
-});
-document.addEventListener('DOMContentLoaded', () => {
-  window.scrollTo(0, 0);
-});
-// Extra fallback with requestAnimationFrame
-requestAnimationFrame(() => {
-  window.scrollTo(0, 0);
-});
+window.scrollTo(0, 0);
+
+// Multiple resets to override browser restore behavior
+window.addEventListener('load', () => window.scrollTo(0, 0));
+document.addEventListener('DOMContentLoaded', () => window.scrollTo(0, 0));
+requestAnimationFrame(() => window.scrollTo(0, 0));
+
+// Delayed resets (browser tries to restore after 100-500ms)
+setTimeout(() => window.scrollTo(0, 0), 50);
+setTimeout(() => window.scrollTo(0, 0), 150);
+setTimeout(() => window.scrollTo(0, 0), 500);
 
 /* ════════════════════════════════════════════════════════
    1.  THREE.JS — ROTATING KOLAM MANDALA PARTICLE SYSTEM
