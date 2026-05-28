@@ -636,12 +636,15 @@ html.no-js .rv{opacity:1 !important;transform:none !important}
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:14px;max-width:900px;margin:0 auto 32px;
+  align-items:start;
 }
 .dtl-tile{
   background:rgba(255,248,231,.025);
   border:1px solid rgba(201,168,76,.12);
   border-radius:8px;padding:20px 14px;text-align:center;
   transition:border-color .3s,transform .3s var(--ease-spring),box-shadow .3s;
+  will-change: transform, opacity;
+  transform-origin: center top;
 }
 .dtl-tile:hover{
   border-color:rgba(201,168,76,.38);
@@ -1330,38 +1333,6 @@ footer{
       </div>
     </div>
 
-    <!-- ── Save the Date buttons ── -->
-    <p class="s-eye" style="margin-bottom:10px">Save the Date</p>
-
-    <!-- Wedding: 2nd July -->
-    <p style="font-family:var(--ff-head);font-size:.52rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;text-align:center">🕉️ &nbsp;Kalyanam · 2nd July 2026 · Peddapalli</p>
-    <div class="std-row" id="std-row">
-      <a class="std-btn std-btn-google"
-         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Praveen+%E2%99%A1+Supriya+Kalyanam&dates=20260702T083000/20260702T150000&location=Reddy+Kalyan+Mantap,+Raghavpur,+Peddapalli,+Telangana"
-         target="_blank" rel="noopener">
-        📅 &nbsp; Google Calendar
-      </a>
-      <a class="std-btn std-btn-apple"
-         href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260702T083000%0ADTEND:20260702T150000%0ASUMMARY:Praveen%20%E2%99%A1%20Supriya%20Kalyanam%0ALOCATION:Reddy%20Function%20Hall%2C%20Raghavpur%2C%20Peddapalli%2C%20Telangana%0AEND:VEVENT%0AEND:VCALENDAR"
-         download="Praveen-Supriya-Kalyanam.ics">
-        🍎 &nbsp; Apple / iCal
-      </a>
-    </div>
-
-    <!-- Reception: 5th July -->
-    <p style="font-family:var(--ff-head);font-size:.52rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin:18px 0 10px;text-align:center">🎉 &nbsp;Reception · 5th July 2026 · Hotel Naveen, Hubli</p>
-    <div class="std-row">
-      <a class="std-btn std-btn-google"
-         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Praveen+%E2%99%A1+Supriya+Reception&dates=20260705T190000/20260705T230000&location=Hotel+Naveen,+Hubli-Dharwad+Road,+Hubli,+Karnataka"
-         target="_blank" rel="noopener">
-        📅 &nbsp; Google Calendar
-      </a>
-      <a class="std-btn std-btn-apple"
-         href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260705T190000%0ADTEND:20260705T230000%0ASUMMARY:Praveen%20%E2%99%A1%20Supriya%20Reception%0ALOCATION:Hotel%20Naveen%2C%20Hubli-Dharwad%20Road%2C%20Hubli%2C%20Karnataka%0AEND:VEVENT%0AEND:VCALENDAR"
-         download="Praveen-Supriya-Reception.ics">
-        🍎 &nbsp; Apple / iCal
-      </a>
-    </div>
 
   </div>
 </section>
@@ -1753,7 +1724,11 @@ gsap.from('#dtl-fam', {
 gsap.from('#dtl-tiles .dtl-tile', {
   opacity: 0, y: 35, scale: 0.88, duration: 0.75, ease: 'back.out(1.3)',
   stagger: 0.09,
-  scrollTrigger: { trigger: '#dtl-tiles', start: 'top 80%' }
+  immediateRender: false,
+  scrollTrigger: { trigger: '#dtl-tiles', start: 'top 80%' },
+  onComplete() {
+    gsap.set('#dtl-tiles .dtl-tile', { clearProps: 'transform,opacity' });
+  }
 });
 /* Save the Date buttons */
 gsap.from('#std-row .std-btn', {
